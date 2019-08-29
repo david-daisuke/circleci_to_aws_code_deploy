@@ -1,0 +1,13 @@
+version: 0.0
+os: linux # このあたりはお約束なのでそのまま記述すること
+
+files:
+# You can specify one or more mappings in the files section.
+  - source: /
+    destination: /home/ec2-user # 他が良ければ事前にユーザ名、ディレクトリは作成すること
+hooks:
+  BeforeInstall:
+    - location: scripts/install_dependencies # このシェルを作成して中にMigrationなどの処理を記入
+  AfterInstall:
+    - location: scripts/start_server
+      timeout: 60

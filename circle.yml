@@ -1,0 +1,17 @@
+test: # テストに関する記述
+  override:
+    - exit 0
+deployment: # デプロイ詳細
+  production: # （本番）
+    branch: master # Githubはここのブランチ名見てプッシュと同時に動作開始
+    codedeploy: # CodeDeployの設定
+      MyExampleCodeDeployToCircleCI: # アプリ名
+        application_root: /
+        region: us-east-2
+        revision_location:
+          revision_type: S3
+          s3_location: # S3の設定
+            bucket: demotravis-s3 # bucket名
+            key_pattern: MyExampleCodeDeployToCircleCI-{BRANCH}-{SHORT_COMMIT}
+        deployment_group: CIrcleCI-Codedeploy # CodeDeployのデプロイグループ名
+        deployment_config: CodeDeployDefault.AllAtOnce
