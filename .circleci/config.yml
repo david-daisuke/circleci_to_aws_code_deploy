@@ -1,9 +1,10 @@
-test: # テストに関する記述
-  override:
+jobs:
+  test: # テストに関する記述
+    override:
     - exit 0
-deployment: # デプロイ詳細
-  production: # （本番）
-    branch: master # Githubはここのブランチ名見てプッシュと同時に動作開始
+    deployment: # デプロイ詳細
+      production: # （本番）
+        branch: master # Githubはここのブランチ名見てプッシュと同時に動作開始
     codedeploy: # CodeDeployの設定
       MyExampleCodeDeployToCircleCI: # アプリ名
         application_root: /
