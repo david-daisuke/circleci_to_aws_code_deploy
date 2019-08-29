@@ -2,12 +2,17 @@ version: 0.0
 os: linux # このあたりはお約束なのでそのまま記述すること
 
 files:
-# You can specify one or more mappings in the files section.
-  - source: /
-    destination: /home/ec2-user # 他が良ければ事前にユーザ名、ディレクトリは作成すること
+  - source: /index.html
+    destination: /var/www/html/
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies.sh # このシェルを作成して中にMigrationなどの処理を記入
-  AfterInstall:
-    - location: scripts/start_server.sh
-      timeout: 60
+    - location: scripts/install_dependencies
+      timeout: 300
+      runas: root
+    - location: scripts/start_server
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_server
+      timeout: 300
+      runas: root
