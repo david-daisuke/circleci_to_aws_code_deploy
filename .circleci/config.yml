@@ -20,8 +20,8 @@ workflows:
   deploy_application:
     jobs:
       - aws-code-deploy/deploy:
-          application-name: MyExampleCodeDeployToTravis # The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
+          application-name: MyExampleCodeDeployToCircleCI # The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
           deployment-group: CIrcleCI-Codedeploy # The name of a new deployment group for the specified application.
           service-role-arn: arn:aws:iam::884871223445:instance-profile/circleCI-service-role # The service role for a deployment group.
-          bundle-bucket: demotravis-s3               # The s3 bucket where an application revision will be stored.
+          bundle-bucket: democircleci-s3               # The s3 bucket where an application revision will be stored.
           bundle-key: ${CIRCLE_BRANCH}_${CIRCLE_SHA1} # A key under the s3 bucket where an application revision will be stored.
