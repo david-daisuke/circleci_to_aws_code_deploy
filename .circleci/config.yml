@@ -1,12 +1,12 @@
 version: 2.1 # We must use 2.1 to make use of orbs.
 orbs: # specify all orbs you want to use.
-  aws-code-deploy: circleci/aws-code-deploy@0.0.9   #please use this orb
+  aws-code-deploy: circleci/aws-code-deploy@0.0.9   #今回使用するorbです
 workflows:
   deploy_application:
     jobs:
       - aws-code-deploy/deploy:
-          application-name: MyExampleCodeDeployToCircleCI # The name of an AWS CodeDeploy application associated with the applicable IAM user or AWS account.
-          deployment-group: CIrcleCI-Codedeploy # The name of a new deployment group for the specified application.
-          service-role-arn: arn:aws:iam::884871223445:role/circleCI-service-role # The service role for a deployment group.
-          bundle-bucket: democircleci-s3               # The s3 bucket where an application revision will be stored.
-          bundle-key: ${CIRCLE_BRANCH}_${CIRCLE_SHA1} # A key under the s3 bucket where an application revision will be stored.
+          application-name: MyExampleCodeDeployToCircleCI #codedeployで作成したアプリケーション名を入れてください
+          deployment-group: CIrcleCI-Codedeploy # codedeployのデプロイメントぐるp￥ー府名を入れてください。
+          service-role-arn: arn:aws:iam::884871223445:role/circleCI-service-role # Deployment Group作成で使用したサービスロール名を入れてください
+          bundle-bucket: democircleci-s3               # S3のバケット名を入れてください。
+          bundle-key: ${CIRCLE_BRANCH}_${CIRCLE_SHA1} # 何もなければ特に変更する必要はありません。
