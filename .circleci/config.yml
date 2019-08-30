@@ -1,6 +1,6 @@
 #このファイルは　.circleci/config.yml　　として.circleci　フォルダ配下におきます。
 version: 2.1 # We must use 2.1 to make use of orbs.
-orbs: # specify all orbs you want to use.
+orbs: # 下記で使用するorbを指定します。
   aws-code-deploy: circleci/aws-code-deploy@0.0.9   #今回使用するorbです
 workflows:
   deploy_application:
